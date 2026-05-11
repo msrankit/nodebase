@@ -1,14 +1,18 @@
-import { Button } from '@/components/ui/button'
-import React from 'react'
-import {prisma} from "@/lib/db"
 
-const Page =async() => {
-    const user = await prisma.user.findMany()
+import {requireAuth} from "@/lib/auth-utils";
+import {caller} from "@/trpc/server";
+
+
+const Page = async() => {
+
+    await requireAuth()
+
+    const data = await caller.getUsers()
     return (
-       <div>
-        <h1 className='text-2xl font-bold'>Hello World</h1>
-        <Button>Click Me</Button>
-        <pre>{JSON.stringify(user)}</pre>
+       <div className={'min-h-screen min-w-screen flex items-center justify-center'}>
+           {JSON.stringify(data)}
+
+           Protect Server Components
        </div>
     )
 }
