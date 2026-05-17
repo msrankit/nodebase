@@ -11,6 +11,7 @@ import {Input} from '@/components/ui/input'
 import Link from "next/link";
 import {authClient} from "@/lib/auth-client"
 import {toast} from "sonner";
+import Image from "next/image";
 
 const registerSchema = z.object({
     email: z.email("Please enter a valid email address"),
@@ -67,10 +68,12 @@ export const RegisterForm = () => {
                             <div className={"grid gap-6"}>
                                 <div className={'flex flex-col gap-4'}>
                                     <Button className={'w-full'} type={'button'} variant="outline" disabled={isPending}>
+                                        <Image src={'/logos/github.svg'} alt={'Github'} width={20} height={20}/>
                                         Continue With Github
                                     </Button>
 
                                     <Button className={'w-full'} type={'button'} variant="outline" disabled={isPending}>
+                                        <Image src={'/logos/google.svg'} alt={'Google'} width={20} height={20}/>
                                         Continue With Google
                                     </Button>
                                     <div className={"grid gap-6"}>
